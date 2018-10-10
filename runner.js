@@ -19,17 +19,9 @@ for (let i = 0; i < exported.length; i++) {
 	
 	user = user.map(function(e) {return e + '"'});
 
+	//start and end
 	if (i == 0 || user.length < 5)
 		continue;
-
-
-	
-
-	if (user[15] == `"0"`)
-		user[15] = 0;
-
-	// let hours =  parseFloat((JSON.parse(user[16]) != "" ? parseInt(JSON.parse(user[16])) : 0));
-	// 	hours += parseFloat((JSON.parse(user[17]) != "" ? parseInt(JSON.parse(user[17])) / 60 : 0));
 
 	let hours = parseFloat(JSON.parse(user[17]).replace(".","")) / 1000;
 
@@ -39,9 +31,6 @@ for (let i = 0; i < exported.length; i++) {
 	if (task.length < 30)
 		task += (user[9].replace(/['"]+/g, '') != "" ? `- ${user[9].replace(/['"]+/g, '')} ` : "");
 	
-	// console.log({task, hours});
-
-	// console.log(hours);
 	let info = {
 		weekNum,
 		datum: JSON.parse(user[1]),
@@ -52,9 +41,6 @@ for (let i = 0; i < exported.length; i++) {
 	
 	info.date = moment(info.date, "DD/MM/YYYY").format('L');
 	dates.push(info);
-
-	if (user[15] == '""')
-		process.exit();
 }
 
 let datums = {};
